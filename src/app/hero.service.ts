@@ -21,7 +21,7 @@ export class HeroService {
         private messageService: MessageService) {
     }
 
-    private heroesUrl = 'api/heroes';
+    private heroesUrl = 'https://jsonplaceholder.typicode.com/users';
 
     /** GET heroes from the server */
     getHeroes(): Observable<Hero[]> {
@@ -80,7 +80,7 @@ export class HeroService {
             // if not search term, return empty hero array.
             return of([]);
         }
-        return this.http.get<Hero[]>(`${this.heroesUrl}/?name=${term}`).pipe(
+        return this.http.get<Hero[]>(`${this.heroesUrl}/?userName=${term}`).pipe(
             tap(_ => this.log(`found heroes matching "${term}"`)),
             catchError(this.handleError<Hero[]>('searchHeroes', []))
         );
